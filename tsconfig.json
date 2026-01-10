@@ -13,7 +13,9 @@
     /* Language and Environment */
     "target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": [
-      "es2021"
+      "es2021",
+      "DOM",
+      "DOM.Iterable"
     ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
     "jsx": "react" /* Specify what JSX code is generated. */,
     // "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
@@ -26,15 +28,16 @@
     // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
 
     /* Modules */
-    "module": "es2022" /* Specify what module code is generated. */,
+    "module": "nodenext" /* Specify what module code is generated. */,
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
-    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "moduleResolution": "nodenext" /* Specify how TypeScript looks up a file from a given module specifier. */,
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
     "types": [
-      "@cloudflare/workers-types"
+      "@cloudflare/workers-types",
+      "bun-types"
     ] /* Specify type package names to be included without being referenced in a source file. */,
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     "resolveJsonModule": true /* Enable importing .json files */,
@@ -46,12 +49,12 @@
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from `node_modules`. Only applicable with `allowJs`. */
 
     /* Emit */
-    // "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
+    "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
     // "declarationMap": true /* Create sourcemaps for d.ts files. */,
-    // "emitDeclarationOnly": true /* Only output d.ts files and not JavaScript files. */,
+    "emitDeclarationOnly": true /* Only output d.ts files and not JavaScript files. */,
     // "sourceMap": true /* Create source map files for emitted JavaScript files. */,
     // "outFile": "./dist/index.js" /* Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output. */,
-    // "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
     // "removeComments": true,                           /* Disable emitting comments. */
     // "noEmit": true /* Disable emitting files from a compilation. */,
     // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
@@ -100,6 +103,7 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    "allowImportingTsExtensions": true
   }
 }

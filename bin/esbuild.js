@@ -11,4 +11,17 @@ build({
   },
   minify: true,
   plugins: [dtsPlugin()],
-}).catch(() => process.exit(1));
+  external: [
+    "satori",
+    "satori/wasm",
+    "yoga-wasm-web",
+    "@resvg/resvg-wasm",
+    "@levischuck/tiny-html",
+  ],
+  define: {
+    "process.versions.bun": "false",
+  }
+}).catch((e) => {
+	console.error(e);
+	process.exit(1);
+});

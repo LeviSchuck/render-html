@@ -1,13 +1,7 @@
 // From @vercel/og
 // https://www.npmjs.com/package/@vercel/og
 
-type EmojiType =
-  | "twemoji"
-  | "openmoji"
-  | "blobmoji"
-  | "noto"
-  | "fluent"
-  | "fluentFlat";
+import { EmojiType } from "./types.ts";
 
 const assetCache = new Map();
 

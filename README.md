@@ -1,3 +1,5 @@
+(This is a fork of https://github.com/kvnang/workers-og/tree/main, which appears unmaintained)
+
 # Cloudflare Workers OG Image Generator
 
 > Using Vercel's [Satori](https://github.com/vercel/satori) engine, and many credits to [`@vercel/og`](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) for the inspiration.
