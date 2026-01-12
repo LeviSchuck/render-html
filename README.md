@@ -1,6 +1,6 @@
 # render-html
 
-Render HTML elements (from `@levischuck/tiny-html`) to PNG or SVG images. Perfect for generating Open Graph images, social media previews, and dynamic images in Cloudflare Workers and browser web workers.
+Render HTML elements (from [`@levischuck/tiny-html`](https://github.com/LeviSchuck/tiny-packages)) to PNG or SVG images. Perfect for generating Open Graph images, social media previews, and dynamic images in Cloudflare Workers and browser web workers.
 
 Based on the work from [Kevin Ang](https://github.com/kvnang) and [Vercel Open Graph (OG) Image Generation](https://vercel.com/docs/og-image-generation).
 
