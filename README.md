@@ -2,7 +2,7 @@
 
 Render HTML elements (from `@levischuck/tiny-html`) to PNG or SVG images. Perfect for generating Open Graph images, social media previews, and dynamic images in Cloudflare Workers and browser web workers.
 
-Based on the work from [https://github.com/kvnang](Kevin Ang) and [https://vercel.com/docs/og-image-generation](Vercel Open Graph (OG) Image Generation).
+Based on the work from [Kevin Ang](https://github.com/kvnang) and [Vercel Open Graph (OG) Image Generation](https://vercel.com/docs/og-image-generation).
 
 ## Usage
 
