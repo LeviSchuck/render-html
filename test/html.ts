@@ -1,5 +1,5 @@
 import { HtmlElement } from "@levischuck/tiny-html";
-import { ImageResponseFont, extractFontsFromHTML, GoogleFontLoader, renderHtml } from "../src/index.ts";
+import { extractFontsFromHTML, renderHtml, loadFonts } from "../src/index.ts";
 
 const element: HtmlElement = {
 	type: 'div',
@@ -44,43 +44,15 @@ const element: HtmlElement = {
 			}
 		]
 	}
-}
+};
 
-// html = `<svg width="576px" height="144px" ...`
-let width = 1200;
-let height = 630;
+const width = 1200;
+const height = 630;
 
-// console.log(JSON.stringify(node, null, 2));
-// const reSerializedSvg = renderHtml(parsedHtml);
-// console.log('original:');
-// console.log(html);
-// console.log('re-serialized:');
-// console.log(reSerializedSvg);
-// console.log('--------------------------------');
 const fontsToLoad = await extractFontsFromHTML(element);
-
-console.log('fonts to load:');
-console.log(fontsToLoad);
-
-const fonts : ImageResponseFont[] = [];
-for (const font of fontsToLoad) {
-  const fontData = await GoogleFontLoader.load({
-    family: `${font.family}${font.italic ? ":ital" : ""}`,
-    weight: font.weight
-  });
-  if (fontData instanceof ArrayBuffer) {
-    fonts.push({
-      name: font.family,
-      data: fontData,
-      weight: font.weight,
-      style: font.italic ? "italic" : "normal",
-    });
-  }
-}
-
+const fonts = await loadFonts(fontsToLoad);
 const image = await renderHtml(element, { width, height, format: "png", fonts, emoji: 'twemoji' });
 
 const bytes = await image.arrayBuffer();
 await Bun.write('image.png', Buffer.from(bytes));
 
-console.log(image);

@@ -46,7 +46,6 @@ export async function renderHtml(element: HtmlElement, options: RenderOptions) :
       }
     } else {
       svg = writeHtml(element, {
-				xml: '<?xml version="1.0" encoding="UTF-8"?>',
 				useCDataForStyles: true,
 			});
       reSvgFonts = {
