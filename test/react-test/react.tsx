@@ -1,5 +1,8 @@
+// @ts-nocheck
 import React from "react";
 import { extractFontsFromHTML, renderHtml, loadFonts } from "../../src/index.ts";
+import { initBunWasm } from "../../src/bun-wasm.ts";
+await initBunWasm();
 
 const element = <div style={{
 	fontFamily: "'Sour Gummy'",

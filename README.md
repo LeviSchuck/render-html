@@ -118,6 +118,85 @@ const bytes = await image.arrayBuffer();
 await Bun.write('image.png', Buffer.from(bytes));
 ```
 
+### WASM Initialization
+
+Before using `renderHtml`, you must initialize the WebAssembly modules. The initialization method depends on your runtime environment:
+
+#### Cloudflare Workers
+
+For Cloudflare Workers, use `worker-wasm`:
+
+```typescript
+import { initWokererWasm } from "@levischuck/render-html/worker-wasm";
+import { renderHtml, extractFontsFromHTML, loadFonts } from "@levischuck/render-html";
+
+// Initialize WASM modules
+await initWokererWasm();
+
+// Now you can use renderHtml
+const fontsToLoad = await extractFontsFromHTML(element);
+const fonts = await loadFonts(fontsToLoad);
+const image = await renderHtml(element, { width: 1200, height: 630, fonts });
+```
+
+#### Client-Side Apps (Vite, Webpack, etc.)
+
+For client-side applications built with Vite or similar bundlers, use `client-wasm`:
+
+```typescript
+import { initClientWasm } from "@levischuck/render-html/client-wasm";
+import { renderHtml, extractFontsFromHTML, loadFonts } from "@levischuck/render-html";
+
+// Initialize WASM modules (typically in useEffect or before rendering)
+await initClientWasm();
+
+// Now you can use renderHtml
+const fontsToLoad = await extractFontsFromHTML(element);
+const fonts = await loadFonts(fontsToLoad);
+const image = await renderHtml(element, { width: 1200, height: 630, fonts });
+```
+
+**React Example:**
+
+```typescript
+import { useState, useEffect } from 'react';
+import { initClientWasm } from '@levischuck/render-html/client-wasm';
+import { renderHtml, extractFontsFromHTML, loadFonts } from '@levischuck/render-html';
+
+function MyComponent() {
+  useEffect(() => {
+		// It might be better as a useDependency kind of thing
+		// This is short hand for now..
+    async function render() {
+      await initClientWasm();
+      // ... rest of rendering code
+    }
+    render();
+  }, []);
+
+  // ...
+}
+```
+
+#### Bun Runtime
+
+For Bun processes, use `bun-wasm`:
+
+```typescript
+import { initBunWasm } from "@levischuck/render-html/bun-wasm";
+import { renderHtml, extractFontsFromHTML, loadFonts } from "@levischuck/render-html";
+
+// Initialize WASM modules
+await initBunWasm();
+
+// Now you can use renderHtml
+const fontsToLoad = await extractFontsFromHTML(element);
+const fonts = await loadFonts(fontsToLoad);
+const image = await renderHtml(element, { width: 1200, height: 630, fonts });
+```
+
+**Note:** You only need to initialize WASM once per runtime environment. The initialization functions are idempotent and safe to call multiple times.
+
 ### Using with Custom Font Cache
 
 ```typescript

@@ -1,5 +1,7 @@
 import { htmlNodeToHtmlElement, readHtml } from "@levischuck/tiny-html";
 import { extractFontsFromHTML, renderHtml, loadFonts } from "../../src/index.ts";
+import { initBunWasm } from "../../src/bun-wasm.ts";
+await initBunWasm();
 
 const honoHtml  = <div style={{
 	fontFamily: "'Sour Gummy'",

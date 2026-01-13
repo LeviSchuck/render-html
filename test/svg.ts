@@ -1,5 +1,7 @@
 import { htmlNodeToHtmlElement, readHtml } from "@levischuck/tiny-html";
 import { extractFontsFromHTML, renderHtml, loadFonts } from "../src/index.ts";
+import { initBunWasm } from "../src/bun-wasm.ts";
+await initBunWasm();
 
 const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="white" />

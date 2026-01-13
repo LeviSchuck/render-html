@@ -9,7 +9,6 @@ import resvgWasm from "../vendors/resvg.wasm";
 
 let resvgInitialized = false;
 let resvgInitPromise: Promise<void> | null = null;
-
 const initResvgWasm = async () => {
   if (resvgInitialized) {
     return;
@@ -18,14 +17,9 @@ const initResvgWasm = async () => {
   if (!resvgInitPromise) {
     resvgInitPromise = (async () => {
       try {
-
-        if (process?.versions?.bun) {
-          // Bun only imports the file path, not as a WebAssembly.Module
-          const wasm = await Bun.file(resvgWasm).bytes();
-          await initWasm(wasm);
-        } else {
-          await initWasm(resvgWasm as WebAssembly.Module);
-        }
+        // Bun only imports the file path, not as a WebAssembly.Module
+        const wasm = await Bun.file(resvgWasm).bytes();
+        await initWasm(wasm);
         resvgInitialized = true;
       } catch (err) {
         if (err instanceof Error && err.message.includes("Already initialized")) {
@@ -52,10 +46,6 @@ const initYogaWasm = async () => {
 
   if (!yogaInitPromise) {
     yogaInitPromise = (async () => {
-      let wasm = yogaWasm;
-      if (process?.versions?.bun) {
-        wasm = await Bun.file(yogaWasm).bytes();
-      }
       // Future TODO: https://github.com/vercel/satori/issues/693
       // Upgrade to latest satori standalone once they have working wasm init on cloudflare workers
       // Also... For some reason the yoga wasm bundle from https://unpkg.com/satori/yoga.wasm seems
@@ -63,6 +53,7 @@ const initYogaWasm = async () => {
       // error: WebAssembly.Module doesn't parse at byte 13: Type section of size 7299055 would overflow Module's size).
       // Their vendored wasm is likely corrupt or wrapped in some way.
       // How have they not noticed this?
+      const wasm = await Bun.file(yogaWasm).bytes();
       const yoga = await initYoga(wasm);
       init(yoga);
       yogaInitialized = true;
@@ -75,6 +66,7 @@ const initYogaWasm = async () => {
   return yogaInitPromise;
 };
 
-export const initSatoriAndResvg = async () => {
-  return Promise.allSettled([initResvgWasm(), initYogaWasm()]);
-};
+
+export async function initBunWasm() : Promise<void> {
+	await Promise.allSettled([initResvgWasm(), initYogaWasm()]);
+}

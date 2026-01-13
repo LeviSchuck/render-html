@@ -8,13 +8,29 @@
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
   "exports": {
+		"./package.json": "./package.json",
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.js"
-    }
+    },
+    "./client-wasm": {
+      "types": "./dist/client-wasm.d.ts",
+      "import": "./dist/client-wasm.js",
+      "default": "./dist/client-wasm.js"
+    },
+		"./worker-wasm": {
+			"types": "./dist/worker-wasm.d.ts",
+			"import": "./dist/worker-wasm.js",
+			"default": "./dist/worker-wasm.js"
+		},
+		"./bun-wasm": {
+			"types": "./dist/bun-wasm.d.ts",
+			"import": "./dist/bun-wasm.js",
+			"default": "./dist/bun-wasm.js"
+		}
   },
-  "types": "./dist/index.d.ts",
   "version": "0.0.1",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260111.0",
@@ -27,7 +43,7 @@
   "private": false,
   "scripts": {
     "build": "bun scripts/esbuild.js",
-    "ts": "tsc --noEmit"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@levischuck/tiny-html": "^0.1.1",

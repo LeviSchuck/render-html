@@ -2,7 +2,12 @@ import { build } from "esbuild";
 import { dtsPlugin } from "esbuild-plugin-d.ts";
 
 build({
-  entryPoints: ["src/index.ts"],
+  entryPoints: [
+		"src/index.ts",
+		"src/worker-wasm.ts",
+		"src/client-wasm.ts",
+		"src/bun-wasm.ts",
+	],
   bundle: true,
   outdir: "dist",
   format: "esm",

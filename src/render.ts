@@ -4,9 +4,9 @@ import { CustomFontsOptions, Resvg } from "@resvg/resvg-wasm";
 import { loadFont } from "./font.ts";
 import type { ImageResponseOptions as RenderOptions } from "./types.ts";
 import { loadDynamicAsset } from "./emoji.ts";
-import { initSatoriAndResvg } from "./wasm.ts";
 import { writeHtml } from "@levischuck/tiny-html";
 import type { HtmlElement } from "@levischuck/tiny-html";
+
 
 /**
  * Render an HtmlElement into a PNG (or SVG) image.
@@ -17,7 +17,6 @@ import type { HtmlElement } from "@levischuck/tiny-html";
  * @throws Inline SVGs contain a <text> node.
  */
 export async function renderHtml(element: HtmlElement, options: RenderOptions) : Promise<Blob> {
-  await initSatoriAndResvg();
   const width = options.width;
   const height = options.height;
 
