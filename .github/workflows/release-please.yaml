@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+
+name: release-please
+
+jobs:
+  release-please:
+    permissions:
+      id-token: write # Allow connecting to other services like AWS
+      contents: write # Able to create release commit
+      pull-requests: write # Able to create release PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

@@ -107,6 +107,8 @@
     "allowImportingTsExtensions": true,
   },
 	"exclude": [
-		"examples/**"
+		"examples/**",
+		"test/hono-test/**",
+		"test/react-test/**"
 	]
 }
