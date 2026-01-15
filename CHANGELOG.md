@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/LeviSchuck/render-html/compare/render-html-v0.1.0...render-html-v0.1.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* Traverse all children when looking for fonts ([4277d1b](https://github.com/LeviSchuck/render-html/commit/4277d1b9aa32f66252eb7bf5aa0fbc1947175ecd))
+
 ## [0.1.0](https://github.com/LeviSchuck/render-html/compare/render-html-v0.0.1...render-html-v0.1.0) (2026-01-13)
 
 
