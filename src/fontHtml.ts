@@ -61,9 +61,13 @@ export function extractFontsFromHTML(root: HtmlNode): FontFamily[] {
     }
 
     // Traverse child nodes with inherited styles
-    if (children && Array.isArray(children)) {
-      for (const child of children) {
-        traverse(child, computedStyles);
+    if (children) {
+      if (Array.isArray(children)) {
+        for (const child of children) {
+          traverse(child, computedStyles);
+        }
+      } else {
+        traverse(children, computedStyles);
       }
     }
   }
