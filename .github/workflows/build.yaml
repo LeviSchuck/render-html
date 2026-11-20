@@ -18,4 +18,6 @@ jobs:
         run: bun install
       - name: Type check
         run: bun run type-check
+      - name: Test rendering
+        run: bun test
 

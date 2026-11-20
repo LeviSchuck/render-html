@@ -197,6 +197,8 @@ const image = await renderHtml(element, { width: 1200, height: 630, fonts });
 
 **Note:** You only need to initialize WASM once per runtime environment. The initialization functions are idempotent and safe to call multiple times.
 
+Satori is kept on the `0.32.x` release line for compatibility with Bun, browsers, and Cloudflare Workers. Satori `0.63.2` fails in Workers because its HarfBuzz loader expects browser globals. The bundled Yoga WASM comes from Satori `0.32.0`; keep it in sync when upgrading Satori. resvg uses the latest stable release, `2.6.2`.
+
 ### Using with Custom Font Cache
 
 ```typescript

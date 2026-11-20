@@ -18,8 +18,7 @@ build({
   plugins: [dtsPlugin()],
   external: [
     "satori",
-    "satori/wasm",
-    "yoga-wasm-web",
+    "satori/standalone",
     "@resvg/resvg-wasm",
     "@levischuck/tiny-html",
   ],

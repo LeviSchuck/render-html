@@ -43,13 +43,13 @@
   "private": false,
   "scripts": {
     "build": "bun scripts/esbuild.js",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "bun test"
   },
   "dependencies": {
     "@levischuck/tiny-html": "^0.1.4",
     "@resvg/resvg-wasm": "2.6.2",
-    "satori": "^0.15.2",
-    "yoga-wasm-web": "0.3.3"
+    "satori": "^0.32.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",

@@ -1,6 +1,5 @@
-import initYoga from "yoga-wasm-web";
 import { initWasm } from "@resvg/resvg-wasm";
-import { init } from "satori/wasm";
+import { init } from "satori/standalone";
 
 // @ts-expect-error .wasm files are not typed
 import yogaWasm from "../vendors/yoga.wasm";
@@ -44,15 +43,7 @@ const initYogaWasm = async () => {
 
   if (!yogaInitPromise) {
     yogaInitPromise = (async () => {
-      // Future TODO: https://github.com/vercel/satori/issues/693
-      // Upgrade to latest satori standalone once they have working wasm init on cloudflare workers
-      // Also... For some reason the yoga wasm bundle from https://unpkg.com/satori/yoga.wasm seems
-      // incompatible with bun and doesn't parse on https://wa2.dev/metadata
-      // error: WebAssembly.Module doesn't parse at byte 13: Type section of size 7299055 would overflow Module's size).
-      // Their vendored wasm is likely corrupt or wrapped in some way.
-      // How have they not noticed this?
-      const yoga = await initYoga(yogaWasm);
-      init(yoga);
+      await init(yogaWasm as WebAssembly.Module);
       yogaInitialized = true;
     })().catch((err) => {
       yogaInitPromise = null;
@@ -65,5 +56,5 @@ const initYogaWasm = async () => {
 
 
 export async function initWokererWasm() : Promise<void> {
-	await Promise.allSettled([initResvgWasm(), initYogaWasm()]);
+	await Promise.all([initResvgWasm(), initYogaWasm()]);
 }

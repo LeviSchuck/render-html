@@ -1,4 +1,4 @@
-import satori from "satori/wasm";
+import satori from "satori/standalone";
 
 import { CustomFontsOptions, Resvg } from "@resvg/resvg-wasm";
 import { loadFont } from "./font.ts";
