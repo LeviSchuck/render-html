@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.1.2](https://github.com/LeviSchuck/render-html/compare/render-html-v0.1.1...render-html-v0.1.2) (2026-11-20)
+
+
+### Bug Fixes
+
+* preserve image dimensions when rendering parsed HTML ([e2e33b8](https://github.com/LeviSchuck/render-html/commit/e2e33b8ef5c3605fc5ea569ac27b35a955b2fb5c))
+* type check visual review without generated build files ([789a92b](https://github.com/LeviSchuck/render-html/commit/789a92b63a8610df285475e4b1ecc3d62c47193d))
+
+### Dependencies and runtime support
+
+* Update `@levischuck/tiny-html` to `^0.1.4` and Satori to `^0.32.0`.
+* Use Satori's standalone WASM interface across Bun, browsers, and Cloudflare Workers; synchronize the bundled Yoga binary and report initialization errors.
+* Retain resvg `2.6.2`, the latest stable release checked for this update. Satori `0.63.2` was tested but is incompatible with Cloudflare Workers because of its HarfBuzz loader.
+
+### Verification and known limitations
+
+* Add 35 reproducible visual examples and automated rendering checks. Validation includes a clean-checkout type check/build, 26 ordinary passing tests, six expected-failure tests, manual PNG/SVG visual review, and Bun/browser/local Worker rendering trials.
+* Six feature examples remain known failures: `align-content: space-evenly`, CSS variables after parsed-HTML conversion, WebP-to-PNG, two backdrop-filter cases, and percentage background positioning. These limitations are explicitly labeled rather than treated as working support.
+* Direct SVG text still depends on fonts available in the viewer; supplied font buffers are used for PNG output.
+* See the [rendering fixture guide](https://github.com/LeviSchuck/render-html/blob/main/test/fixtures/README.md) for release coverage, reproduction steps, and limitations.
+
+
 ## [0.1.1](https://github.com/LeviSchuck/render-html/compare/render-html-v0.1.0...render-html-v0.1.1) (2026-01-15)
 
 
