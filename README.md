@@ -551,6 +551,10 @@ Font style values (from satori).
 type FontStyle = "normal" | "italic";
 ```
 
+## Rendering examples
+
+Run `bun run visual-review` to generate the PNG/SVG gallery, then open `/tmp/render-html-visual-review/index.html` in Chrome. The [fixture guide](test/fixtures/README.md) maps examples to Satori releases and documents known rendering gaps. Run `bun test` for automated checks; six feature cases currently use expected-failure markers.
+
 ## Why use this?
 
 [workers-og](https://github.com/kvnang/workers-og) is unmaintained and cannot render [receiptline](https://github.com/LeviSchuck/receiptline) SVGs.

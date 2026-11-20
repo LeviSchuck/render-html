@@ -44,7 +44,8 @@
   "scripts": {
     "build": "bun scripts/esbuild.js",
     "type-check": "tsc --noEmit",
-    "test": "bun test"
+    "test": "bun test",
+    "visual-review": "bun run build && bun scripts/visual-review.ts"
   },
   "dependencies": {
     "@levischuck/tiny-html": "^0.1.4",
