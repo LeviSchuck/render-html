@@ -1,12 +1,14 @@
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { renderHtml } from '../dist/index.js';
-import { initBunWasm } from '../dist/bun-wasm.js';
 import { readHtml, htmlNodeToHtmlElement } from '@levischuck/tiny-html';
 import type { ImageResponseFont } from '../src/types.ts';
 import { basicExamples } from '../test/fixtures/basic-examples.ts';
 import type { VisualExample } from '../test/fixtures/satori-features.ts';
 import { featureExamples } from '../test/fixtures/satori-features.ts';
+
+// Load the built package at runtime without requiring generated declarations during type-checking.
+const { renderHtml }: typeof import('../src/index.ts') = await import(new URL('../dist/index.js', import.meta.url).href);
+const { initBunWasm }: typeof import('../src/bun-wasm.ts') = await import(new URL('../dist/bun-wasm.js', import.meta.url).href);
 
 const out = resolve(process.argv[2] ?? '/tmp/render-html-visual-review');
 await mkdir(out, { recursive: true });
