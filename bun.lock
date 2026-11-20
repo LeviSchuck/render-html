@@ -5,7 +5,7 @@
     "": {
       "name": "@levischuck/render-html",
       "dependencies": {
-        "@levischuck/tiny-html": "^0.1.1",
+        "@levischuck/tiny-html": "^0.1.4",
         "@resvg/resvg-wasm": "2.6.2",
         "satori": "^0.15.2",
         "yoga-wasm-web": "0.3.3",
@@ -75,7 +75,7 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.12", "", { "os": "win32", "cpu": "x64" }, "sha512-alJC0uCZpTFrSL0CCDjcgleBXPnCrEAhTBILpeAp7M/OFgoqtAetfBzX0xM00MUsVVPpVjlPuMbREqnZCXaTnA=="],
 
-    "@levischuck/tiny-html": ["@levischuck/tiny-html@0.1.1", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-8eLgByVKB7iACkHUno0Vj6tdFLHAYBic3CXt50PALyQSE6DZBVQS4agfrhaukv/11A0GDNSy92yNOuqzP5XveA=="],
+    "@levischuck/tiny-html": ["@levischuck/tiny-html@0.1.4", "", { "peerDependencies": { "typescript": ">=5 <8" } }, "sha512-gneBtKArglosVnO1BCkYskFBz95ivBrkJODAhogIut6JxFDMtmwIo1eTegVXJZJag2ZaGd8FF7PDuT+SkseptA=="],
 
     "@resvg/resvg-wasm": ["@resvg/resvg-wasm@2.6.2", "", {}, "sha512-FqALmHI8D4o6lk/LRWDnhw95z5eO+eAa6ORjVg09YRR7BkcM6oPHU9uyC0gtQG5vpFLvgpeU4+zEAz2H8APHNw=="],
 
