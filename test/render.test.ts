@@ -66,6 +66,26 @@ test("renders gradients, rounded borders and embedded SVG images", async () => {
   expect(await pngDimensions(await renderHtml(html, { width: 200, height: 100, fonts }))).toEqual([200, 100]);
 });
 
+test("renders nested images with numeric HTML width and height attributes without changing the input", async () => {
+  const src = 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="red"/></svg>');
+  const html = element(`<div style="display:flex;width:100px;height:60px;background:white"><div style="display:flex"><img src="${src}" width="40" height="30" /></div></div>`);
+  const original = structuredClone(html);
+  const svg = await renderHtml(html, { width: 100, height: 60, fonts, format: "svg" });
+  const renderer = new Resvg(await svg.text());
+  const image = renderer.render();
+  try {
+    const pixel = (x: number, y: number) => [...image.pixels.slice((y * image.width + x) * 4, (y * image.width + x) * 4 + 4)];
+    expect(pixel(20, 15)).toEqual([255, 0, 0, 255]);
+    expect(pixel(45, 15)).toEqual([255, 255, 255, 255]);
+    expect(pixel(20, 40)).toEqual([255, 255, 255, 255]);
+    expect(html).toEqual(original);
+    expect(await pngDimensions(await renderHtml(html, { width: 100, height: 60, fonts }))).toEqual([100, 60]);
+  } finally {
+    image.free();
+    renderer.free();
+  }
+});
+
 test("renders direct SVG with text using supplied font buffers", async () => {
   const html = element('<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="100" fill="white"/><text x="10" y="50" font-family="Roboto Mono" font-size="24">SVG text</text></svg>');
   const svg = await renderHtml(html, { width: 200, height: 100, fonts, format: "svg" });

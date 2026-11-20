@@ -5,7 +5,31 @@ import { loadFont } from "./font.ts";
 import type { ImageResponseOptions as RenderOptions } from "./types.ts";
 import { loadDynamicAsset } from "./emoji.ts";
 import { writeHtml } from "@levischuck/tiny-html";
-import type { HtmlElement } from "@levischuck/tiny-html";
+import type { HtmlElement, HtmlNode } from "@levischuck/tiny-html";
+
+function prepareHtmlNode(node: HtmlNode): HtmlNode {
+  if (Array.isArray(node)) {
+    return node.map((child) => prepareHtmlNode(child));
+  }
+  if (!node || typeof node !== "object" || !("type" in node)) {
+    return node;
+  }
+
+  const props = { ...node.props };
+  if (node.type === "img") {
+    // HTML attributes are strings; Satori expects unitless image dimensions as numbers.
+    for (const dimension of ["width", "height"] as const) {
+      const value = props[dimension];
+      if (typeof value === "string" && /^\d+(?:\.\d+)?$/.test(value.trim()) && Number.isFinite(Number(value))) {
+        props[dimension] = Number(value);
+      }
+    }
+  }
+  if (props.children !== undefined && !(props.children instanceof Promise)) {
+    props.children = prepareHtmlNode(props.children);
+  }
+  return { ...node, props };
+}
 
 
 /**
@@ -53,7 +77,7 @@ export async function renderHtml(element: HtmlElement, options: RenderOptions) :
     }
   } else {
     try {
-      svg = await satori(element as unknown as Parameters<typeof satori>[0], {
+      svg = await satori(prepareHtmlNode(element) as unknown as Parameters<typeof satori>[0], {
         ...widthHeight,
         fonts: !!options?.fonts?.length
           ? options.fonts
