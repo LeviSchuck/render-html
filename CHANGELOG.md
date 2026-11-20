@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/LeviSchuck/render-html/compare/render-html-v0.1.1...render-html-v0.1.2) (2026-11-20)
+
+
+### Bug Fixes
+
+* preserve image dimensions when rendering parsed HTML ([e2e33b8](https://github.com/LeviSchuck/render-html/commit/e2e33b8ef5c3605fc5ea569ac27b35a955b2fb5c))
+* type check visual review without generated build files ([789a92b](https://github.com/LeviSchuck/render-html/commit/789a92b63a8610df285475e4b1ecc3d62c47193d))
+
 ## [0.1.1](https://github.com/LeviSchuck/render-html/compare/render-html-v0.1.0...render-html-v0.1.1) (2026-01-15)
 
 
